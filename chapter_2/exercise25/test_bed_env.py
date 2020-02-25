@@ -3,7 +3,6 @@ import random
 
 random.seed = 1
 
-
 class TestBedEnv:
     """
     Defining non-stationary version of the k-armed testbed.
@@ -38,3 +37,4 @@ class TestBedEnv:
 
     def plot(self, n_it):
         pass
+        

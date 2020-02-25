@@ -9,8 +9,9 @@ if ! /usr/bin/git pull; then
 fi
 
 if ! [ -d ".env_sutton" ]; then
-    virtualenv -p python3 ../.env_sutton
+    virtualenv -p python3 .env_sutton
 fi
-source ../.env_sutton/bin/activate
 
-pip install -r requirements.txt
+source .env_sutton/bin/activate
+
+pip3 install -r requirements.txt
