@@ -30,11 +30,11 @@ class TestBedEnv:
         
         return rew
 
-    def run(self, n_it=1):
+    def _test(self, n_it=1):
         for _ in range(n_it):
             print(f"Iteration {_}")
             print(self.get_rewards(12))
 
-    def plot(self, n_it):
-        pass
-        
+if __name__ == "__main__":
+    # Testing unit
+    obj = 
