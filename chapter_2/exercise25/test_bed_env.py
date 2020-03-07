@@ -30,11 +30,19 @@ class TestBedEnv:
         
         return rew
 
-    def _test(self, n_it=1):
-        for _ in range(n_it):
-            print(f"Iteration {_}")
-            print(self.get_rewards(12))
+    def response(self, action):
+        return 1
+
+    def run(self, agent):
+        # agent takes action
+        action = agent.select_action()
+
+        # environment responds
+        rew = self.response(action)
+
+        # agent updates his memory
+        agent.update(action, rew)
+
 
 if __name__ == "__main__":
-    # Testing unit
-    obj = 
+    # testing unit

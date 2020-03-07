@@ -15,7 +15,7 @@ class ActionValueAgent(TestBedEnv):
         self.n_it = n_it
         self.env = TestBedEnv(ENV_NUMBER_TEST_BEDS)
         self.action_values = np.zeros(ENV_NUMBER_TEST_BEDS)
-        self.estimate_actions = # make a dic with 2 varsw
+        self.estimate_actions = np.zeros(ENV_NUMBER_TEST_BEDS)
         self.env = TestBedEnv(n_bed)
 
         assert(isinstance(type_learning_rate, str))
@@ -43,7 +43,7 @@ class ActionValueAgent(TestBedEnv):
         Select action based on best estiaate.
         """
         # get higher action
-        max = self.estimate_actions[0]
+        argmax = argmax(self.estimate_actions)
         candidates = []
         for est in self.estimate_actions:
             if est > max:
