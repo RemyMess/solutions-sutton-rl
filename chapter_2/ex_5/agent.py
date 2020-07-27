@@ -1,7 +1,6 @@
 import numpy as np
 import logging
 import random
-import matplotlib.pyplot as plt
 
 class ActionValueAgent:
     """
@@ -14,11 +13,15 @@ class ActionValueAgent:
         self.estimate_actions = np.zeros(n_bed)
         self.action_estimation_init = list(range(n_bed))
         self.n_it = 1
+        self.alpha_cst = alpha_cst
         self.type_learning_rate = type_learning_rate
         self.epsilon = epsilon
 
         self.optimal_action_number_tracker = 0
-        self.optimal_action_ratio_tracker = []
+        self.optimal_action_ratio_tracker = np.array([])
+        
+        self.rewards_tracker = np.array([])
+        
 
         assert(isinstance(type_learning_rate, str))
         if type_learning_rate not in ["sample", "constant"]:
@@ -78,9 +81,6 @@ class ActionValueAgent:
     
     def update(self, action, reward):
         self.estimate_actions[action] = reward + self.alpha() * (self.estimate_actions[action] - reward)
-
-    def plot_optimality_actions(self):
-        plt.plot(self.optimal_action_ratio_tracker)
-        plt.title(f"Agent with epsilon {self.epsilon} and {self.type_learning_rate} learning rate")
-        plt.show()
-
+        
+        # keep track of average rewards over all the beds
+        self.rewards_tracker = np.append(self.rewards_tracker, reward)
